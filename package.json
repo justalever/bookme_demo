@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.1.0",
+    "@hotwired/turbo-rails": "^7.1.3",
+    "@rails/actiontext": "^7.0.3-1",
+    "autoprefixer": "^10.4.8",
+    "esbuild": "^0.15.5",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
+    "trix": "^2.0.0-beta.0"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/line-clamp": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.4"
+  }
+}

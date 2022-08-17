@@ -1,0 +1,25 @@
+<%= render layout: "auth_layout", locals: { title: "Sign in" }  do %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+
+    <div class="mb-6">
+      <%= f.label :email, class: label_class %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: input_class %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :password, class: label_class %>
+      <%= f.password_field :password, autocomplete: "current-password", class: input_class %>
+    </div>
+
+    <div class="mb-6">
+      <% if devise_mapping.rememberable? %>
+        <%= f.check_box :remember_me, class: checkbox_class %>
+        <%= f.label :remember_me %>
+      <% end %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.submit "Sign in", class: button_class(theme: "primary", variant: "expanded") %>
+    </div>
+  <% end %>
+<% end %>

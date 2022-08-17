@@ -1,0 +1,14 @@
+<%= render layout: "auth_layout", locals: { title: "Resend confirmation instructions" }  do %>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, data: { turbo: false }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="mb-6">
+      <%= f.label :email, class: label_class %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: input_class %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.submit "Resend instructions", class: button_class(theme: "primary", variant: "expanded") %>
+    </div>
+  <% end %>
+<% end %>
