@@ -1,5 +1,25 @@
 <div class="max-w-3xl mx-auto px-4">
-  <h1 class="font-bold text-3xl mb-6">New booking</h1>
+  <% if @booking_type.payment_required? %>
+    <div
+      data-controller="payment"
+      data-payment-item-value="<%= @booking_type.id %>"
+      data-payment-return-url-value="<%= root_url %>"
+    >
+      <h1 class="font-bold text-3xl mb-6">Schedule your booking for <%= number_to_currency(@booking_type.price) %></h1>
 
-  <%= render 'form', booking: @booking %>
+      <div clas="mb-10">
+        <h3 class="font-bold text-xl mb-3">Enter payment details</h3>
+
+        <div id="payment-element" data-payment-target="element"></div>
+
+        <div data-payment-target="message" class="hidden"></div>
+      </div>
+
+      <%= render 'form', booking: @booking %>
+    </div>
+  <% else %>
+    <h1 class="font-bold text-3xl mb-6">Schedule your booking</h1>
+
+    <%= render 'form', booking: @booking %>
+  <% end %>
 </div>
