@@ -13,6 +13,11 @@
     </div>
 
     <div class="mb-6">
+      <%= f.label :booking_link, class: label_class %>
+      <%= f.text_field :booking_link, class: input_class %>
+    </div>
+
+    <div class="mb-6">
       <div class="flex">
         <%= f.label :password, class: label_class %>
         <% if @minimum_password_length %>

@@ -7,4 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :booking_types
+
+  validates :booking_link, presence: true
 end

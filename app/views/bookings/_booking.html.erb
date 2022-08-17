@@ -1,32 +1,14 @@
-<div id="<%= dom_id booking %>">
-  <p>
-    <strong>Status:</strong>
-    <%= booking.status %>
-  </p>
-
-  <p>
-    <strong>First name:</strong>
-    <%= booking.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= booking.last_name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= booking.email %>
-  </p>
-
-  <p>
-    <strong>Start at:</strong>
-    <%= booking.start_at %>
-  </p>
-
-  <p>
-    <strong>End at:</strong>
-    <%= booking.end_at %>
-  </p>
-
-</div>
+<tr id="<%= dom_id booking %>">
+  <td class="border border-slate-300 bg-white text-left p-4">
+    <%= form_with(model: booking, method: :patch) do |form| %>
+      <%= form.select :status, options_for_select(Booking.statuses.map { |key, value| [key.capitalize, key] }, form.object.status, {}, { class: input_class,, onchange: "this.form.submit()"}) %>
+    <% end %>
+  </td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.name %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.email %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.start_at.strftime('%b %e, %Y at %l:%M %p') %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.end_at.strftime('%b %e, %Y at %l:%M %p') %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.booking_type.name %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.booking_type.payment_required? ? "Yes" : "No" %></td>
+  <td class="border border-slate-300 bg-white text-left p-4"><%= booking.customer_paid? ? "Yes" : "No" %></td>
+</tr>
