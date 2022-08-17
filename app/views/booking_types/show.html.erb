@@ -1,0 +1,49 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Booking_type</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to booking_types_path, class: button_class(theme: "transparent") do %>
+      All Booking_types
+      <% end %>
+      <%= link_to edit_booking_type_path(@booking_type), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Name:</p>
+        <p><%= @booking_type.name %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Location:</p>
+        <p><%= @booking_type.location %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Description:</p>
+        <p><%= @booking_type.description %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Color:</p>
+        <p><%= @booking_type.color %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Duration:</p>
+        <p><%= @booking_type.duration %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Payment required:</p>
+        <p><%= @booking_type.payment_required %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Price:</p>
+        <p><%= @booking_type.price %></p>
+      </li>
+      <li>
+        <p class="font-semibold">User:</p>
+        <p><%= @booking_type.user %></p>
+      </li>
+  </ul>
+</div>

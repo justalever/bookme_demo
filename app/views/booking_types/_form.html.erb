@@ -1,0 +1,54 @@
+<%= form_with(model: booking_type) do |form| %>
+<% if booking_type.errors.any? %>
+<div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+  <h2 class="text-lg font-semibold mb-3"><%= pluralize(booking_type.errors.count, "error") %> prohibited this booking_type from being saved:</h2>
+
+  <ul class="list-disc leading-relaxed">
+    <% booking_type.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="mb-6">
+        <%= form.label :name, class: label_class %>
+          <%= form.text_field :name, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :location, class: label_class %>
+          <%= form.text_field :location, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :description, class: label_class %>
+          <%= form.rich_text_area :description, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :color, class: label_class %>
+          <%= form.text_field :color, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :duration, class: label_class %>
+          <%= form.number_field :duration, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :payment_required, class: label_class %>
+          <%= form.check_box :payment_required, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :price, class: label_class %>
+          <%= form.number_field :price, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :user_id, class: label_class %>
+          <%= form.text_field :user_id, class: input_class %>
+      </div>
+
+<%= form.submit class: button_class(theme: 'primary') %>
+
+<% if booking_type.persisted? %>
+<%= link_to "Cancel", booking_type, class: "text-neutral-700 underline inline-block ml-3" %>
+<% else %>
+<%= link_to "Cancel", booking_types_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<% end %>
+<% end %>

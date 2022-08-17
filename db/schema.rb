@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_205148) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_210707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_205148) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "booking_types", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "color", default: "#000000"
+    t.integer "duration"
+    t.boolean "payment_required", default: false
+    t.integer "price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_booking_types_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean "customer_paid", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "booking_type_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -74,10 +100,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_205148) do
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "booking_link"
+    t.index ["booking_link"], name: "index_users_on_booking_link", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "booking_types", "users"
 end
