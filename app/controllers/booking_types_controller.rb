@@ -21,7 +21,7 @@ class BookingTypesController < ApplicationController
 
   # POST /booking_types or /booking_types.json
   def create
-    @booking_type = current_user.booking_types.new(booking_type_params.merge(user: current_user))
+    @booking_type = current_user.booking_types.new(booking_type_params)
 
     respond_to do |format|
       if @booking_type.save
